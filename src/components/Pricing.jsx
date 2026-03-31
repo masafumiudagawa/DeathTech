@@ -36,8 +36,8 @@ const plans = [
     },
     {
         name: 'ファミリープラン',
-        price: '780',
-        period: '円/月',
+        price: null,
+        period: null,
         description: '家族の安心も考えたい方に',
         features: [
             'スタンダードの全機能',
@@ -46,9 +46,9 @@ const plans = [
             '優先サポート',
             '家族2名まで招待可能',
         ],
-        cta: 'このプランで始める',
+        cta: 'リリースをお待ちください',
         popular: false,
-        gradient: 'from-accent-500 to-amber-500',
+        comingSoon: true,
         borderHover: 'hover:border-accent-500/30',
     },
 ]
@@ -99,26 +99,41 @@ export default function Pricing() {
                                 </div>
                             )}
 
-                            <div className="p-8">
+                            <div className={`p-8 ${plan.comingSoon ? 'opacity-70' : ''}`}>
                                 {/* Plan Header */}
-                                <h3 className="text-lg font-bold text-white">{plan.name}</h3>
+                                <div className="flex items-center gap-3">
+                                    <h3 className="text-lg font-bold text-white">{plan.name}</h3>
+                                    {plan.comingSoon && (
+                                        <span className="px-2.5 py-0.5 rounded-full bg-dark-500/50 border border-dark-400/30 text-dark-300 text-xs font-medium">
+                                            リリース予定
+                                        </span>
+                                    )}
+                                </div>
                                 <p className="text-sm text-dark-400 mt-1">{plan.description}</p>
 
                                 {/* Price */}
                                 <div className="mt-6 flex items-baseline gap-1">
-                                    <span className="text-5xl font-extrabold text-white">
-                                        {plan.price === '0' ? '無料' : `¥${plan.price}`}
-                                    </span>
-                                    {plan.price !== '0' && (
-                                        <span className="text-dark-400 text-sm">{plan.period}</span>
+                                    {plan.comingSoon ? (
+                                        <span className="text-3xl font-bold text-dark-400">
+                                            Coming Soon
+                                        </span>
+                                    ) : (
+                                        <>
+                                            <span className="text-5xl font-extrabold text-white">
+                                                {plan.price === '0' ? '無料' : `¥${plan.price}`}
+                                            </span>
+                                            {plan.price !== '0' && (
+                                                <span className="text-dark-400 text-sm">{plan.period}</span>
+                                            )}
+                                        </>
                                     )}
                                 </div>
 
                                 {/* Features */}
                                 <ul className="mt-8 space-y-3">
                                     {plan.features.map((feature, fIndex) => (
-                                        <li key={fIndex} className="flex items-start gap-3 text-sm text-dark-200">
-                                            <svg className="w-5 h-5 text-accent-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                        <li key={fIndex} className={`flex items-start gap-3 text-sm ${plan.comingSoon ? 'text-dark-400' : 'text-dark-200'}`}>
+                                            <svg className={`w-5 h-5 flex-shrink-0 mt-0.5 ${plan.comingSoon ? 'text-dark-500' : 'text-accent-500'}`} fill="currentColor" viewBox="0 0 20 20">
                                                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
                                             </svg>
                                             {feature}
@@ -128,9 +143,12 @@ export default function Pricing() {
 
                                 {/* CTA */}
                                 <button
-                                    className={`mt-8 w-full py-3.5 px-6 rounded-xl font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5 ${plan.popular
-                                            ? 'bg-gradient-to-r from-primary-600 to-accent-500 text-white shadow-lg shadow-accent-500/20 hover:shadow-accent-500/40'
-                                            : 'bg-white/5 border border-white/10 text-dark-200 hover:bg-white/10 hover:text-white'
+                                    disabled={plan.comingSoon}
+                                    className={`mt-8 w-full py-3.5 px-6 rounded-xl font-semibold text-sm transition-all duration-300 ${plan.comingSoon
+                                            ? 'bg-dark-600/50 border border-dark-500/30 text-dark-400 cursor-not-allowed'
+                                            : plan.popular
+                                                ? 'bg-gradient-to-r from-primary-600 to-accent-500 text-white shadow-lg shadow-accent-500/20 hover:shadow-accent-500/40 hover:-translate-y-0.5'
+                                                : 'bg-white/5 border border-white/10 text-dark-200 hover:bg-white/10 hover:text-white hover:-translate-y-0.5'
                                         }`}
                                 >
                                     {plan.cta}
