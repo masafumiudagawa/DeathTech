@@ -1,24 +1,24 @@
-import Header from './components/Header'
-import Hero from './components/Hero'
-import Problems from './components/Problems'
-import Solutions from './components/Solutions'
-import Pricing from './components/Pricing'
-import FAQ from './components/FAQ'
-import Footer from './components/Footer'
+import { Routes, Route } from 'react-router-dom'
+import Layout from './components/layout/Layout'
+import Home from './pages/Home'
+import About from './pages/About'
+import Terms from './pages/Terms'
+import Privacy from './pages/Privacy'
+import Tokushoho from './pages/Tokushoho'
+import Contact from './pages/Contact'
 
 function App() {
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
-      <main>
-        <Hero />
-        <Problems />
-        <Solutions />
-        <Pricing />
-        <FAQ />
-      </main>
-      <Footer />
-    </div>
+    <Layout>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/tokushoho" element={<Tokushoho />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </Layout>
   )
 }
 

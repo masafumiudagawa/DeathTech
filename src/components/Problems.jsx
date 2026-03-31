@@ -9,8 +9,9 @@ const problems = [
         description:
             '複数のサブスクに加入しているうちに、月々の支払い総額が把握できなくなっていませんか？気づけば使っていないサービスにも毎月課金が続いています。',
         color: 'from-red-500 to-orange-500',
-        bgColor: 'bg-red-50',
-        iconColor: 'text-red-500',
+        iconBg: 'bg-red-500/10',
+        iconColor: 'text-red-400',
+        borderColor: 'hover:border-red-500/30',
     },
     {
         icon: (
@@ -22,8 +23,9 @@ const problems = [
         description:
             'サービスごとに異なるIDやパスワード。メモを紛失し、ログインできなくなって解約すらできない…そんな経験はありませんか？',
         color: 'from-amber-500 to-yellow-500',
-        bgColor: 'bg-amber-50',
-        iconColor: 'text-amber-500',
+        iconBg: 'bg-amber-500/10',
+        iconColor: 'text-amber-400',
+        borderColor: 'hover:border-amber-500/30',
     },
     {
         icon: (
@@ -35,62 +37,82 @@ const problems = [
         description:
             '家族が亡くなった後、どんなサービスに加入していたか分からず、請求が続く…。遺族にとってこれほど辛いことはありません。',
         color: 'from-blue-500 to-indigo-500',
-        bgColor: 'bg-blue-50',
-        iconColor: 'text-blue-500',
+        iconBg: 'bg-blue-500/10',
+        iconColor: 'text-blue-400',
+        borderColor: 'hover:border-blue-500/30',
     },
 ]
 
 export default function Problems() {
     return (
-        <section id="problems" className="relative py-20 lg:py-28 bg-slate-50">
-            {/* Background pattern */}
-            <div className="absolute inset-0 opacity-5">
-                <div className="absolute inset-0" style={{
-                    backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)',
-                    backgroundSize: '40px 40px',
-                }} />
-            </div>
+        <section id="problems" className="relative py-20 lg:py-28 section-light noise-bg overflow-hidden">
+            {/* Section divider */}
+            <div className="absolute top-0 left-0 w-full section-divider" />
+            <div className="absolute bottom-0 left-0 w-full section-divider" />
+            <div className="absolute top-1/2 right-0 w-[400px] h-[400px] rounded-full bg-red-500/5 blur-[100px]" />
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
                 <div className="text-center max-w-3xl mx-auto mb-16">
-                    <span className="inline-block px-4 py-1.5 rounded-full bg-red-100 text-red-600 text-sm font-medium mb-4">
+                    <span className="inline-block px-4 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-sm font-medium mb-4">
                         よくある課題
                     </span>
-                    <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-                        こんな<span className="text-red-500">お悩み</span>ありませんか？
+                    <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+                        こんな<span className="text-red-400">お悩み</span>ありませんか？
                     </h2>
-                    <p className="mt-4 text-lg text-slate-500">
+                    <p className="mt-4 text-lg text-dark-300">
                         多くの方が抱えるサブスクリプションに関する問題を解決します
                     </p>
                 </div>
 
-                {/* Problem Cards */}
-                <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
-                    {problems.map((problem, index) => (
-                        <div
-                            key={index}
-                            className={`animate-fade-in-up ${index === 1 ? 'animation-delay-200' : index === 2 ? 'animation-delay-400' : ''}`}
-                        >
-                            <div className="group relative h-full bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-slate-100 hover:border-slate-200 hover:-translate-y-1">
-                                {/* Icon */}
-                                <div className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl ${problem.bgColor} ${problem.iconColor} mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                                    {problem.icon}
-                                </div>
-
-                                {/* Content */}
-                                <h3 className="text-xl font-bold text-slate-800 mb-3">
-                                    {problem.title}
-                                </h3>
-                                <p className="text-slate-500 leading-relaxed">
-                                    {problem.description}
-                                </p>
-
-                                {/* Bottom Gradient Line */}
-                                <div className={`absolute bottom-0 left-8 right-8 h-1 bg-gradient-to-r ${problem.color} rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                            </div>
+                {/* Comic Illustration + Problem Cards */}
+                <div className="grid lg:grid-cols-5 gap-8 lg:gap-10 items-start">
+                    {/* Comic Panel */}
+                    <div className="lg:col-span-2 animate-fade-in-up">
+                        <div className="comic-panel">
+                            <img
+                                src="/images/comic-accident.jpg"
+                                alt="突然の事故…家族が困る事態に"
+                                className="w-full h-auto"
+                                loading="lazy"
+                            />
                         </div>
-                    ))}
+                        <p className="mt-4 text-center text-sm text-dark-400 italic">
+                            突然の事態に備えていますか？
+                        </p>
+                    </div>
+
+                    {/* Problem Cards */}
+                    <div className="lg:col-span-3 space-y-5">
+                        {problems.map((problem, index) => (
+                            <div
+                                key={index}
+                                className={`animate-fade-in-up ${index === 1 ? 'animation-delay-200' : index === 2 ? 'animation-delay-400' : ''}`}
+                            >
+                                <div className={`group relative card-dark rounded-2xl p-6 lg:p-8 ${problem.borderColor}`}>
+                                    <div className="flex gap-5">
+                                        {/* Icon */}
+                                        <div className={`flex-shrink-0 inline-flex items-center justify-center w-14 h-14 rounded-2xl ${problem.iconBg} ${problem.iconColor} group-hover:scale-110 transition-transform duration-300`}>
+                                            {problem.icon}
+                                        </div>
+
+                                        {/* Content */}
+                                        <div>
+                                            <h3 className="text-lg font-bold text-white mb-2">
+                                                {problem.title}
+                                            </h3>
+                                            <p className="text-dark-300 leading-relaxed text-sm">
+                                                {problem.description}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    {/* Bottom Gradient Line */}
+                                    <div className={`absolute bottom-0 left-6 right-6 h-0.5 bg-gradient-to-r ${problem.color} rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>

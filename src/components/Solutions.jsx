@@ -36,69 +36,70 @@ const features = [
 
 export default function Solutions() {
     return (
-        <section id="solutions" className="relative py-20 lg:py-28 bg-white overflow-hidden">
-            {/* Background Decoration */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-primary-50 blur-3xl -translate-y-1/2 translate-x-1/3 opacity-60" />
+        <section id="solutions" className="relative py-20 lg:py-28 section-dark overflow-hidden">
+            {/* Background */}
+            <div className="absolute top-0 left-1/3 w-[500px] h-[500px] rounded-full bg-primary-600/5 blur-[120px]" />
+            <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full bg-accent-500/5 blur-[100px]" />
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
                 <div className="text-center max-w-3xl mx-auto mb-16">
-                    <span className="inline-block px-4 py-1.5 rounded-full bg-primary-100 text-primary-700 text-sm font-medium mb-4">
+                    <span className="inline-block px-4 py-1.5 rounded-full bg-primary-600/10 border border-primary-500/20 text-primary-300 text-sm font-medium mb-4">
                         サブスクカッターの機能
                     </span>
-                    <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+                    <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
                         <span className="gradient-text">3つの機能</span>で安心を届ける
                     </h2>
-                    <p className="mt-4 text-lg text-slate-500">
+                    <p className="mt-4 text-lg text-dark-300">
                         覚えておく煩わしさ、解約し忘れ、家族への万が一の愛情をサポートします
                     </p>
                 </div>
 
                 {/* Features Grid */}
-                <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div className="grid lg:grid-cols-5 gap-10 lg:gap-12 items-start">
                     {/* Feature Cards */}
-                    <div className="space-y-6">
+                    <div className="lg:col-span-3 space-y-5">
                         {features.map((feature, index) => (
                             <div
                                 key={index}
-                                className="group flex gap-5 p-6 rounded-2xl bg-slate-50 hover:bg-white hover:shadow-xl border border-transparent hover:border-slate-100 transition-all duration-500 hover:-translate-x-1"
+                                className={`animate-fade-in-up ${index === 1 ? 'animation-delay-200' : index === 2 ? 'animation-delay-400' : ''}`}
                             >
-                                <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 text-white flex items-center justify-center shadow-lg shadow-primary-500/20 group-hover:shadow-primary-500/40 transition-shadow">
-                                    {feature.icon}
-                                </div>
-                                <div>
-                                    <h3 className="text-lg font-bold text-slate-800 mb-1">
-                                        {feature.title}
-                                    </h3>
-                                    <p className="text-slate-500 text-sm leading-relaxed mb-2">
-                                        {feature.description}
-                                    </p>
-                                    <span className="inline-flex items-center text-xs font-semibold text-primary-600 bg-primary-50 px-3 py-1 rounded-full">
-                                        {feature.highlight}
-                                    </span>
+                                <div className="group flex gap-5 p-6 rounded-2xl card-dark hover:border-primary-500/20">
+                                    <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-600 to-accent-500 text-white flex items-center justify-center shadow-lg shadow-primary-500/20 group-hover:shadow-accent-500/30 transition-all duration-300 group-hover:scale-110">
+                                        {feature.icon}
+                                    </div>
+                                    <div>
+                                        <h3 className="text-lg font-bold text-white mb-1">
+                                            {feature.title}
+                                        </h3>
+                                        <p className="text-dark-300 text-sm leading-relaxed mb-3">
+                                            {feature.description}
+                                        </p>
+                                        <span className="inline-flex items-center text-xs font-semibold text-accent-400 bg-accent-500/10 border border-accent-500/20 px-3 py-1 rounded-full">
+                                            {feature.highlight}
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         ))}
                     </div>
 
-                    {/* App Screenshot */}
-                    <div className="relative order-first lg:order-last">
-                        <div className="relative mx-auto w-full max-w-sm">
-                            {/* Decorative */}
-                            <div className="absolute -z-10 inset-0 m-auto w-[80%] h-[80%] bg-gradient-to-br from-primary-200 to-accent-200 rounded-3xl blur-2xl opacity-40" />
-
-                            {/* Phone */}
-                            <div className="relative bg-slate-900 rounded-[2.5rem] p-3 shadow-2xl shadow-slate-900/30 animate-float">
-                                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-6 bg-slate-900 rounded-b-2xl" />
-                                <div className="rounded-[2rem] overflow-hidden bg-white">
-                                    <img
-                                        src="/images/app-dashboard.webp"
-                                        alt="サブスク管理ダッシュボード"
-                                        className="w-full h-auto"
-                                        loading="lazy"
-                                    />
-                                </div>
-                            </div>
+                    {/* Comic Panel */}
+                    <div className="lg:col-span-2 order-first lg:order-last animate-fade-in-up animation-delay-200">
+                        <div className="comic-panel">
+                            <img
+                                src="/images/comic-family.jpg"
+                                alt="サブスクカッターで家族も安心"
+                                className="w-full h-auto"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div className="mt-5 speech-bubble">
+                            <p className="text-sm text-dark-200 leading-relaxed">
+                                <span className="text-accent-400 font-bold">「これなら、もしもの時も安心ね」</span>
+                                <br />
+                                サブスク管理は、今からでも遅くない！
+                            </p>
                         </div>
                     </div>
                 </div>
