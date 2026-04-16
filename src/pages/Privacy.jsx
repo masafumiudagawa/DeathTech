@@ -75,7 +75,7 @@ const sections = [
         title: '10. お問い合わせ',
         content: '個人情報の取扱いに関するお問い合わせは、以下の窓口までお願いいたします。',
         extra: [
-            'DeathTech株式会社 個人情報保護管理者',
+            'デステック合同会社 個人情報保護管理者',
             'メールアドレス: info@deathtech.jp',
         ],
     },
@@ -105,7 +105,7 @@ export default function Privacy() {
                 <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="card-dark rounded-2xl p-8 sm:p-12">
                         <p className="text-dark-300 text-sm leading-relaxed mb-10">
-                            DeathTech株式会社（以下「当社」といいます）は、本サービス「サブスクカッター」の利用者の個人情報を適切に保護することが社会的責務であると考え、以下のプライバシーポリシーに基づき個人情報の保護に努めます。
+                            デステック合同会社（以下「当社」といいます）は、本サービス「サブスクカッター」の利用者の個人情報を適切に保護することが社会的責務であると考え、以下のプライバシーポリシーに基づき個人情報の保護に努めます。
                         </p>
 
                         <div className="space-y-10">
