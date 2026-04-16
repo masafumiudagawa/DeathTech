@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 
 const rows = [
-    ['販売業者', 'DeathTech株式会社'],
-    ['代表責任者', '代表取締役'],
-    ['所在地', '東京都渋谷区'],
+    ['販売会社', 'デステック合同会社'],
+    ['代表責任者', '代表社員　西村　拓哉'],
+    ['所在地', '〒104-0061\n東京都中央区銀座1丁目12番4号N&E BLD.6F'],
     ['電話番号', 'お問い合わせフォームよりご連絡ください'],
     ['メールアドレス', 'info@deathtech.jp'],
     ['URL', 'https://death-tech.vercel.app'],
@@ -30,7 +30,11 @@ const rows = [
         'Microsoft Edge（最新版）',
         '※上記以外のブラウザでは正常に動作しない場合があります',
     ]],
-    ['特別条件', '未成年者の方は、保護者の同意を得た上でご利用ください'],
+    ['特約事項', [
+        '申し込み後の利用月分の返金、また過去利用分の返金はできません。',
+        'クレジットカード以外の決済は選択できません。',
+        '領収書の発行は承っておりません。',
+    ]],
 ]
 
 export default function Tokushoho() {
@@ -86,7 +90,7 @@ export default function Tokushoho() {
                                                     {value}
                                                 </a>
                                             ) : (
-                                                value
+                                                <span className="whitespace-pre-line">{value}</span>
                                             )}
                                         </td>
                                     </tr>
